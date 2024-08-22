@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navigation from './components/navigation';
 import Footer from './components/footer';
 import LandingPage from './pages/landingPage';
+import AboutPage from './pages/aboutPage';
+import Messages from './pages/messages';
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<LandingPage/>} />
+          <Route path="/about" element={<AboutPage/>} />
+          <Route path="/chat" element={<Messages/>} />
         </Routes>
         <Footer />
       </BrowserRouter>
