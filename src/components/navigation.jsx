@@ -6,7 +6,7 @@ import LogoCunyGPT from '../assets/LogoCunyGPT.png';
 
 const Navigation = () => {
   return (
-    <Box bg="gray.200" py={4}>
+    <Box bg="gray.200" py={4} zIndex={10} position="relative">
       <Flex justify="space-between" maxW="1000px" mx="auto">
         <Link to="/">
           <Image

@@ -13,12 +13,16 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@tsparticles/all": "^3.5.0",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.5.0",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.3.29",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^6.26.1",
     "react-router-dom": "^6.26.1",
+    "react-type-animation": "^3.2.0",
     "web-vitals": "^4.2.3"
   },
   "devDependencies": {
