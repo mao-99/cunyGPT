@@ -1,22 +1,23 @@
-// components/Navigation.js
 import React from 'react';
 import { Box, Flex, Button, Image, HStack } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import LogoCunyGPT from '../assets/LogoCunyGPT.png';
 
 const Navigation = () => {
   return (
     <Box bg="gray.200" py={4} zIndex={10} position="relative">
       <Flex justify="space-between" maxW="1000px" mx="auto">
-        <Link to="/">
+        <RouterLink to="/">
           <Image
             src={LogoCunyGPT}
             alt="logo"
             width="200px"
           />
-        </Link>
+        </RouterLink>
         <HStack spacing={4}>
           <Button
+            as={RouterLink}
+            to="/"
             color="#FFB71B"
             bg="#204CAD"
             _hover={{ bg: "#071B49" }}
@@ -24,11 +25,11 @@ const Navigation = () => {
             px={4}
             py={2}
           >
-            <Link to={"/"}>
-              Home
-            </Link>
+            Home
           </Button>
           <Button
+            as={RouterLink}
+            to="/chat"
             color="#FFB71B"
             bg="#204CAD"
             _hover={{ bg: "#071B49" }}
@@ -36,11 +37,11 @@ const Navigation = () => {
             px={4}
             py={2}
           >
-            <Link to={"/chat"}>
-              Chat
-            </Link>
+            Chat
           </Button>
           <Button
+            as={RouterLink}
+            to="/about"
             color="#FFB71B"
             bg="#204CAD"
             _hover={{ bg: "#071B49" }}
@@ -48,9 +49,7 @@ const Navigation = () => {
             px={4}
             py={2}
           >
-            <Link to={"/about"}>
-              About
-            </Link>
+            About
           </Button>
         </HStack>
       </Flex>
