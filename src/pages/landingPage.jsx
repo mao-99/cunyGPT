@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Button, Divider, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Heading, Button, Divider, Flex, Image, Text, Tooltip } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import ParticlesComponent from '../components/particles';
 import { TypeAnimation } from 'react-type-animation';
@@ -7,6 +7,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { CircularProgress, CircularProgressLabel} from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
+
 
 
 // Import all CUNY images
@@ -35,6 +37,7 @@ import CUNY_QCC from "../Assets/CUNY_QCC.png";
 import CUNY_Queens from "../Assets/CUNY_Queens.webp";
 import CUNY_York from "../Assets/CUNY_York.png";
 
+
 const SliderImage = ({ src, alt }) => (
   <Box
     w="150px"
@@ -42,16 +45,17 @@ const SliderImage = ({ src, alt }) => (
     m={2}
     position="relative"
     overflow="hidden"
+     bg="#f0f0f0"
+    borderRadius="50%" // Makes the container circular
     transition="all 0.3s"
-    _hover={{ '& > img': { filter: 'none' } }}
   >
     <Image
+     
       src={src}
       alt={alt}
       w="100%"
       h="100%"
       objectFit="contain"
-      filter="grayscale(100%)"
       transition="all 0.3s"
     />
   </Box>
@@ -69,7 +73,6 @@ const SliderContainer = ({ children }) => (
       top: 0,
       bottom: 0,
       width: '50px',
-      background: 'linear-gradient(to right, white, transparent)',
       zIndex: 1,
     }}
     _after={{
@@ -79,7 +82,6 @@ const SliderContainer = ({ children }) => (
       top: 0,
       bottom: 0,
       width: '50px',
-      background: 'linear-gradient(to left, white, transparent)',
       zIndex: 1,
     }}
   >
@@ -201,9 +203,12 @@ const LandingPage = () => {
           </Box>
         </Flex>
 
-        <Heading mb={4} textAlign="center">
-          CunyGPT is connected to:
-        </Heading>
+        <Heading fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }} 
+              color="#FFFFFF" 
+              fontWeight="bold"
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
+              textAlign="center"
+            >Our Connections</Heading>
         {/* Left to right slider */}
         <SliderContainer>
           <Slider {...sliderSettings}>
@@ -222,34 +227,100 @@ const LandingPage = () => {
           </Slider>
         </SliderContainer>
 
-        {/* Additional Content Below */}
-        <Divider my={12} />
-        <Flex justify="center" align="center" mb={8}>
-          <Image src="placeholder.jpg" alt="Placeholder" mr={8} />
-          <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-            <Heading mb={2} fontSize="2xl">The Problem</Heading>
-            <Text>
-              lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-              lorem ipsum lorem ipsum
-            </Text>
-            <Box >
-      <CircularProgress value={77} size="120px" color="blue.400">
-        <CircularProgressLabel>77%</CircularProgressLabel>
+        {/* Problem/Solution Section */}
+        <Flex justifyContent="center" alignItems="center" height="100vh" position="relative">
+      {/* CircularProgress */}
+      <CircularProgress
+        value={77}
+        size="400px"
+        color="blue.400"
+        trackColor="gray.100"
+        thickness="12px"
+      >
+        <CircularProgressLabel
+          fontSize="3xl"
+          fontWeight="bold"
+          color="blue.500"
+          textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
+        >
+          77%
+        </CircularProgressLabel>
       </CircularProgress>
-    </Box>
-          </Box>
 
-        </Flex>
-        <Flex justify="center" align="center" mb={8}>
-          <Box>
-            <Heading mb={2} fontSize="2xl">Our Solution</Heading>
-            <Text>
-              lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-              lorem ipsum lorem ipsum
-            </Text>
-          </Box>
-          <Image src="placeholder.jpg" alt="Placeholder" ml={8} />
-        </Flex>
+      {/* White Part Tooltip */}
+      <Box
+       position="absolute"
+       left="0"              
+       top="50%"              
+       transform="translateY(-50%)" g
+       bg="gray.200"
+       color="gray.800"
+       p="8"
+       borderRadius="lg"
+       width="300px"
+       textAlign="center"
+       fontSize="sm"
+       boxShadow="lg"
+       zIndex="1"
+       fontStyle="italic"
+       textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
+       fontWeight="bold"
+
+
+      >
+        Only 23 percent of a HealthyCUNY survey respondents are aware that their campus had services to help them address food insecurity.
+      </Box>
+
+      {/* Blue Part Tooltip */}
+      <Box
+        top="50%"
+        right="-10px"
+        transform="translateY(-50%)"
+        position="absolute"
+        bg="blue.500"
+        color="white"
+        p="8"
+        borderRadius="lg"
+        width="300px"
+        textAlign="center"
+        fontSize="sm"
+        boxShadow="lg"
+        zIndex="1"
+        fontStyle="italic"
+        textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
+        fontWeight="bold"
+
+
+      >
+        77 percent of CUNY students are unaware or unsure of the availability of campus food insecurity services (HealthyCUNY, 2018).
+      </Box>
+    </Flex>
+    <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" p={5}>
+      <Box flex="1" pr={{ base: 0, md: 6 }}>
+        <Image 
+          src="images/viewOfModel.png" 
+          alt="App Screenshot"
+          objectFit="contain"
+          boxSize="100%"
+          borderRadius="lg"
+          overflow={'hidden'}
+        />
+      </Box>
+      <Box flex="1">
+        <Heading fontSize="3xl" color={'white'} mb={4}>Our Solution</Heading>
+        <Text color={'white'} mb={4}>
+          CUNYGPT is a revolutionary resource for CUNY students to find all resources at one site.
+        </Text>
+        <Text color={'white'} mb={4}>
+          The power of our idea lies in its ability to integrate various campus resources into a single, accessible platform.
+        </Text>
+        <Text color={'white'}>
+          Discover how CUNYGPT can enhance your student experience by providing all the essential information you need in one place.
+        </Text>
+      </Box>
+    </Flex>
+    
+
         <Heading mb={4} textAlign="center">
           See how it works
         </Heading>
