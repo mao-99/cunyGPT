@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Environment variables
+.env 
+.env/*
+env/*
+
+/keys/*
+/keys
+/keys/keys.js
+keys.js
