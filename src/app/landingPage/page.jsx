@@ -236,12 +236,12 @@ const LandingPage = () => {
               boxShadow="0px 4px 20px rgba(0, 0, 0, 0.3)"
               borderRadius="20px"
             />
-            <Box bg="gray.700" p={8} borderRadius="20px" position="relative" zIndex={1}>
+            <Box bg="#204CAD" p={8} borderRadius="20px" position="relative" zIndex={1}>
               <Flex justifyContent="center" alignItems="center" position="relative">
                 <CircularProgress
                   value={77}
                   size="300px"
-                  color="#204CAD"
+                  color="#FFB71B"
                   trackColor="gray.100"
                   thickness="12px"
                 >
@@ -281,7 +281,7 @@ const LandingPage = () => {
                   right="0"
                   transform="translateY(-50%)"
                   position="absolute"
-                  bg="#204CAD"
+                  bg="#FFB71B"
                   color="white"
                   p="6"
                   borderRadius="lg"
@@ -317,7 +317,7 @@ const LandingPage = () => {
               boxShadow="0px 4px 20px rgba(0, 0, 0, 0.3)"
               borderRadius="20px"
             />
-            <Box bg="gray.100" borderRadius="20px" position="relative" zIndex={1}>
+            <Box bg="#FFB71B" borderRadius="20px" position="relative" zIndex={1}>
               <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" p={10}>
                 <Box flex="1" pr={{ base: 0, md: 6 }} mb={{ base: 6, md: 0 }}>
                   <Image
@@ -331,13 +331,13 @@ const LandingPage = () => {
                 </Box>
                 <Box flex="1">
                   <Text color={'black'} mb={4}>
-                    CUNYGPT is a revolutionary resource for CUNY students to find all resources at one site.
+                    <b>CUNYGPT</b> is a revolutionary resource for CUNY students to find all resources at one site.
                   </Text>
                   <Text color={'black'} mb={4}>
                     The power of our idea lies in its ability to integrate various campus resources into a single, accessible platform.
                   </Text>
                   <Text color={'black'}>
-                    Discover how CUNYGPT can enhance your student experience by providing all the essential information you need in one place.
+                    Discover how <b>CUNYGPT</b> can enhance your student experience by providing all the essential information you need in one place.
                   </Text>
                 </Box>
               </Flex>
