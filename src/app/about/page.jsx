@@ -79,7 +79,7 @@ const AboutUs = () => {
   return (
     <Box minHeight="100vh" width="100%">
       {/* Hero Section with Particles Background */}
-      <Box position="relative" overflow="hidden" height="500px">
+      <Box position="relative" overflow="hidden" height="450px">
         <Box position="absolute" top="0" left="0" width="100%" height="100%" zIndex="-1">
           <ParticlesComponent id="particles" />
         </Box>
