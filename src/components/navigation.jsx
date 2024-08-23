@@ -29,7 +29,7 @@ const Navigation = () => {
           </Button>
           <Button
             as={RouterLink}
-            to="/chat"
+            to="/messages"
             color="#FFB71B"
             bg="#204CAD"
             _hover={{ bg: "#071B49" }}

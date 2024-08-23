@@ -16,7 +16,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<LandingPage/>} />
-          <Route path='/chat' element={<Chat />} />
+          {/* <Route path='/chat' element={<Chat />} /> */}
           <Route path="/about" element={<AboutUs/>} /> 
           <Route path="/messages" element={<Messages/>} />
         </Routes>

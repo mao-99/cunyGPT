@@ -121,8 +121,8 @@ const LandingPage = () => {
   const cunyImages = [
     "CUNY_Baruch.png", "CUNY_BC.png", "CUNY_BCC.png", "CUNY_BMCC.jpg", "CUNY_CCNY.png", "CUNY_CSI.png", "CUNY_Graduate_Center.png",
     "CUNY_Guttman.gif", "CUNY_Health_Policy.png", "CUNY_Hostos.png", "CUNY_Hunter.png", "CUNY_JohnJay.png", "CUNY_Journalism.png",
-    "CUNY_Kingsborough.png", "CUNY_Labor.png", "CUNY_Law.png","CUNY_Lehman.png", "CUNY_Macuaulay.png", "CUNY_Medgar.png", "CUNY_NYCCT.jpg",
-    "CUNY_Professional_Studies.jpg", "CUNY_QCC", "CUNY_Queens.webp", "CUNY_York.png"
+    "CUNY_Kingsborough.jpg", "CUNY_Labor.png", "CUNY_Law.png","CUNY_Lehman.png", "CUNY_Macaulay.png", "CUNY_Medgar.png", "CUNY_NYCCT.jpg",
+    "CUNY_Professional_Studies.png", "CUNY_QCC.png", "CUNY_Queens.webp", "CUNY_York.png"
   ];
 
   return (
@@ -252,7 +252,7 @@ const LandingPage = () => {
        position="absolute"
        left="0"              
        top="50%"              
-       transform="translateY(-50%)" g
+       transform="translateY(-50%)"
        bg="gray.200"
        color="gray.800"
        p="8"

@@ -17,9 +17,9 @@ import {
 } from '@chakra-ui/react';
 import { Select as ChakraSelect } from 'chakra-react-select';
 import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const FormModal = ({ isOpen, onClose, onSave }) => {
-  const navigate = useNavigate();
   const [form, setForm] = useState({
     schoolName: '',
     year: '',
@@ -66,7 +66,7 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    <Navigate to="/" />
   };
 
   const schoolOptions = [

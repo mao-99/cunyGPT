@@ -1,5 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
 import {
   Box,
   Flex,
@@ -32,18 +34,26 @@ const Messages = () => {
     "Here's information about CUNY's academic calendar.",
     "These are the required courses for your major."
   ]);
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
+  const { messages, input, handleInputChange, setInput, setMessages } = useChat({
     initialMessages: [
       { role: 'assistant', content: "Hello! How can I assist you today with CUNY-related questions?" },
       { role: 'user', content: "What are the admission requirements for CUNY schools?" },
       { role: 'assistant', content: "The admission requirements for CUNY schools typically include a high school diploma or equivalent, SAT/ACT scores, and a completed application. Specific requirements may vary by school and program." },
-      { role: 'user', content: "Thanks! Can you tell me about financial aid options?" },
     ],
   });
   const chatBoxRef = useRef(null);
   const [chatBoxHeight, setChatBoxHeight] = useState('670px');
-  const [chatHistory, setChatHistory] = useState("");
-  const [question, setQuestion] = useState("")
+  const [chatHistory, setChatHistory] = useState([]);
+  const [question, setQuestion] = useState("");
+
+
+  `As a work around to contextual messages. I will locally manage chatHistory by using a chat history state variable which is an array of objects.
+  The objects have the structure: {question: "this is the question the user asks", response: "this is the response gotten"}. 
+  Each submit triggers a call to an async function that responds with the backend response. When the response is generated, a new element is added to the messages state variable. 
+  The messages state variable is what we are using to manage the text stream. 
+  
+  In the call to the async function, we include the context. And based off this context the function knows which database to look for context before passing it to the llm.
+  `
 
   useEffect(() => {
     onOpen();
@@ -85,13 +95,52 @@ const Messages = () => {
     });
   };
 
-  const customSubmit = (e) => {
+  const customSubmit = async (e) => {
     e.preventDefault();
-    const userMessage = { role: 'user', content: input };
-    messages.push(userMessage);
-    handleSubmit(e);
-    console.log(e.target[0].value)
-    console.log(userInfo)
+    
+    console.log(input);
+
+    // Add the user's question to the messages array
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: 'user', content: input }
+    ]);
+
+    // Set input to blank
+    setInput('');
+
+    try {
+        console.log(messages)
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: input,
+          history: messages, // You can use messages instead of chatHistory
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('API request failed');
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      // Add the assistant's response to the messages array
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { role: 'assistant', content: data.answer } // Assuming data.answer contains the response
+      ]);
+
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error (e.g., show an error message to the user)
+    }
+
+    console.log(userInfo);
   };
 
   return (
@@ -162,7 +211,7 @@ const Messages = () => {
             </VStack>
           </Box>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={customSubmit}>
             <InputGroup>
               <Input
                 value={input}
@@ -180,7 +229,7 @@ const Messages = () => {
                   _hover={{ backgroundColor: "#071B49" }}
                   type="submit"
                   aria-label="Send message"
-                  onClick={handleSubmit}
+                  onClick={customSubmit}
                 />
               </InputRightElement>
             </InputGroup>
@@ -213,7 +262,7 @@ const Messages = () => {
           </Box>
         </Box>
       </Flex>
-      <FormModal isOpen={isOpen} onClose={onClose} onSave={handleSaveForm} />
+        <FormModal isOpen={isOpen} onClose={onClose} onSave={handleSaveForm} />
     </Container>
   );
 };

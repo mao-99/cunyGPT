@@ -120,49 +120,53 @@ export async function coursesVectorSearch(userQuery, collection) {
     }
 }
 
-export const getResponse = async (query) => {
-    let embeddedQuery = await skillsVectorSearch(query, jobCollection)
-    // console.log(embeddedQuery)
-    const jobDescriptions = embeddedQuery.map(doc => doc.desc).join("\n");
-    let skillsExtractionPrompt = PromptTemplate.fromTemplate(
-        `Analyze this text and extract a list of skills needed for the intended profession in an array format;
-         [skill1, skill2, skill3, ...]. 
-         Make the maximum number of skills 10 and simplify and summarize each skill into as little number of words possible, in some cases a one word description suffices: {jobDescriptions}`
-    )
-    let llm = new ChatOpenAI({model: "gpt-4-0125-preview"})
-    // let skChain = RunnableSequence.from([
-    //     {
-    //         jobDescriptions: new RunnablePassthrough(),
-    //     },
-    //     skillsExtractionPrompt,
-    //     llm,
-    //     new StringOutputParser(),
-    // ])
-    let skillsChain = skillsExtractionPrompt.pipe(llm).pipe(new StringOutputParser())
-    const skillsList = await skillsChain.invoke({ jobDescriptions })
-    let coursesQuery = await coursesVectorSearch(skillsList, coursesCollection)
-    console.log("Skills: ", skillsList)
-    console.log("Courses: ", coursesQuery)
-    return {skillsList, coursesQuery}
-}
+// export const getResponse = async (query) => {
+//     let embeddedQuery = await skillsVectorSearch(query, jobCollection)
+//     // console.log(embeddedQuery)
+//     const jobDescriptions = embeddedQuery.map(doc => doc.desc).join("\n");
+//     let skillsExtractionPrompt = PromptTemplate.fromTemplate(
+//         `Analyze this text and extract a list of skills needed for the intended profession in an array format;
+//          [skill1, skill2, skill3, ...]. 
+//          Make the maximum number of skills 10 and simplify and summarize each skill into as little number of words possible, in some cases a one word description suffices: {jobDescriptions}`
+//     )
+//     let llm = new ChatOpenAI({model: "gpt-4-0125-preview"})
+//     // let skChain = RunnableSequence.from([
+//     //     {
+//     //         jobDescriptions: new RunnablePassthrough(),
+//     //     },
+//     //     skillsExtractionPrompt,
+//     //     llm,
+//     //     new StringOutputParser(),
+//     // ])
+//     let skillsChain = skillsExtractionPrompt.pipe(llm).pipe(new StringOutputParser())
+//     const skillsList = await skillsChain.invoke({ jobDescriptions })
+//     let coursesQuery = await coursesVectorSearch(skillsList, coursesCollection)
+//     console.log("Skills: ", skillsList)
+//     console.log("Courses: ", coursesQuery)
+//     return {skillsList, coursesQuery}
+// }
 
-async function runScript() {
-    client.connect()
+// async function runScript() {
+//     client.connect()
 
-    await getResponse("I would love to be a professional fighter")
+//     await getResponse("I would love to be a professional fighter")
     
-    await client.close();
-}
+//     await client.close();
+// }
 
 // runScript()
-const chat_history = []
+
 export async function POST(req) {
     console.log("Found me")
     try {
         const { stream, handlers } = LangChainAdapter;
         const body = await req.json();
-        const messages = body.messages ?? [];
-        const question = messages[messages.length - 1].content;
+        // const messages = body.messages ?? [];
+        //const question = messages[messages.length - 1].content;
+        const question = body.message
+        let chat_history = body.history
+        chat_history = Object.values(chat_history).join()
+        console.log(question)
 
         const model = new ChatOpenAI({
             temperature: 0.8,
@@ -219,6 +223,7 @@ export async function POST(req) {
         new MessagesPlaceholder("chat_history"),
         ["human", "{input}"],
         ]);
+
         const historyAwareRetriever = await createHistoryAwareRetriever({
         llm,
         retriever,
@@ -253,17 +258,29 @@ export async function POST(req) {
             retriever: historyAwareRetriever,
             combineDocsChain: questionAnswerChain,
         });
+
+        const finalFormattingPrompt = PromptTemplate.fromTemplate(
+            `Analyze this text and format the text by adding double line breaks between paragraphs or numbered elements. If possible embolden or underline numbered list elements;
+            {finalResponse};
+            `
+        );
         
         // Usage:
         const response2 = await ragChain.invoke({
             chat_history,
             input: question,
         });
-        console.log("This is the other rag chain. Check 6.2: ", response2)
-        console.log(response2.answer)
-        chat_history.concat(response2)
-        console.log("THis is chat history: ", chat_history)
-        return new Response((response2.answer.json()))
+        // console.log("This is the other rag chain. Check 6.2: ", response2)
+        console.log("This is backend: ", response2.answer)
+        const resultChain = finalFormattingPrompt.pipe(llm).pipe(new StringOutputParser());
+        // console.log("Check 3")
+        const result = response2.answer
+        const finalResponse = await resultChain.invoke({ finalResponse: result });
+        const response = {
+            answer: response2.answer,
+          };
+        return NextResponse.json(response)
+        // return new Response(response2.answer)
     } catch (e) {
         console.error(e);
         return NextResponse.json({ message: 'Error Processing' }, { status: 500 });
