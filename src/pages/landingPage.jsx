@@ -306,18 +306,28 @@ const LandingPage = () => {
           overflow={'hidden'}
         />
       </Box>
-      <Box flex="1">
-        <Heading fontSize="3xl" color={'white'} mb={4}>Our Solution</Heading>
-        <Text color={'white'} mb={4}>
-          CUNYGPT is a revolutionary resource for CUNY students to find all resources at one site.
-        </Text>
-        <Text color={'white'} mb={4}>
-          The power of our idea lies in its ability to integrate various campus resources into a single, accessible platform.
-        </Text>
-        <Text color={'white'}>
-          Discover how CUNYGPT can enhance your student experience by providing all the essential information you need in one place.
-        </Text>
-      </Box>
+      <Box flex="1" 
+      p={6} 
+      border="linear-gradient(to right, #00008b, #add8e6) 1;"
+      bg="transparent" 
+      borderRadius="md" 
+      boxShadow="lg"
+      backdropFilter="blur(5px)"
+>
+  <Heading fontSize="4xl" color="white" mb={6}>
+    Why CUNYGPT?
+  </Heading>
+  <Text fontSize="lg" lineHeight="1.8" color="white" mb={4}>
+    <strong>CUNYGPT</strong> is a revolutionary resource for CUNY students to find all resources at one site.
+  </Text>
+  <Text fontSize="lg" lineHeight="1.8" color="white" mb={4}>
+    The power of our idea lies in its ability to integrate various campus resources into a single, accessible platform.
+  </Text>
+  <Text fontSize="lg" lineHeight="1.8" color="white">
+    Discover how <strong>CUNYGPT</strong> can enhance your student experience by providing all the essential information you need in one place.
+  </Text>
+</Box>
+
     </Flex>
     
 
