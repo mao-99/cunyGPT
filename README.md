@@ -8,7 +8,7 @@ CUNYGPT is designed to provide CUNY students with easy access to essential resou
 
 ## Features
 
-- **Chat Application:** CUNYGPT is a chat application that allows students to interact with a custom ChatGPT version designed specifically to answer questions related to their essential needs.
+- **Chat Application:** CUNYGPT is a chat application that allows students to interact with a custom chat appliaction designed specifically to answer questions related to their essential needs.
 - **Resource Access:** The app provides a streamlined way to access helpful resources, ensuring students have the support they need without the frustration of traditional search methods.
 
 ## Technologies Used
