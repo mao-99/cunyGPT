@@ -159,7 +159,7 @@ const AboutUs = () => {
               image={"Headshot_Mao.png"}
               name="Mubarak Odufade"
               school="College of Staten Island"
-              bio="Bio 2 lorem ipsum..."
+              bio="CS major and full-stack developer with a strong work ethic and passion for making a meaningful impact through programming. In my free time, I enjoy soccer and video games."
               linkedin="https://www.linkedin.com/in/modufade/"
               github="https://github.com/mao-99"
               discordUsername="mao.nda"
