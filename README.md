@@ -1,6 +1,6 @@
 # CUNYGPT
 
-**Built by:** Mubarak, Jack, Harmain, Idris
+**Built by:** Mubarak Odufade, Jack Hachicho, Harmain Munir, Idris Hassan
 
 ## Introduction
 
@@ -14,9 +14,9 @@ CUNYGPT is designed to provide CUNY students with easy access to essential resou
 ## Technologies Used
 
 - **Front-End:**
-  - Chakra UI
-  - React
-  - Next.js
+  - ChakraUI
+  - React 
+  - NextJS
 
 - **Back-End:**
   - *(To be added later)*
