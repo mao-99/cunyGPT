@@ -14,12 +14,17 @@ CUNYGPT is designed to provide CUNY students with easy access to essential resou
 ## Technologies Used
 
 - **Front-End:**
-  - ChakraUI
-  - React 
-  - NextJS
+  - **Next.js:** The framework used to build the project.
+  - **React:** Managed the chat interface and passed chat history to the backend API routes.
+  - **Vercel's AI SDK:** Integrated to add chat capabilities to the frontend.
+  - **Chakra UI:** Utilized for designing and styling the user interface.
 
 - **Back-End:**
-  - *(To be added later)*
+  - **Python:** Used with Selenium and Pandas to get and clean the data.
+  - **MongoDB Atlas:** Utilized as the vector database.
+  - **OpenAI:** Used to generate embeddings for each data entry.
+  - **Langchain:** Implemented for RAG (retrieval-augmented generation) and contextual implementation.
+  - **OpenAI APIs:** Various integrations to generate embeddings, prompts, and feed them into RAG chains.
 
 ## Getting Started
 
