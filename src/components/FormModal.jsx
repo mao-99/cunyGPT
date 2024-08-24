@@ -118,11 +118,11 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
   ];
 
   const contextOptions = [
-    { value: "Academic", label: "Academic + Career Resources" },
-    { value: "Housing", label: "Housing + Shelter Resources"},
-    { value: "Counseling", label: "Counseling Resources"},
-    { value: "Food", label: "Food Pantry Resources"},
-    { value: "Health", label: "Healt + Wellness Resources"}
+    { value: "academic", label: "Academic + Career Resources" },
+    { value: "counseling", label: "Counseling Resources"},
+    { value: "food", label: "Food Pantry Resources"},
+    { value: "health", label: "Health + Wellness Resources"},
+    { value: "security", label: "Security + Safety Resources"}
   ]
 
   // this doesn't work im gonna attempt to fix this so the dropdowns have more style to them.
@@ -150,7 +150,7 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
         <ModalBody>
           <VStack spacing={4}>
             <FormControl isInvalid={!!errors.schoolName}>
-              <FormLabel>School Name*</FormLabel>
+              <FormLabel>School Name</FormLabel>
               <ChakraSelect
                 name="schoolName"
                 value={schoolOptions.find((opt) => opt.value === form.schoolName)}
@@ -162,7 +162,7 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
             </FormControl>
 
             <FormControl isInvalid={!!errors.year}>
-              <FormLabel>Year*</FormLabel>
+              <FormLabel>Year</FormLabel>
               <ChakraSelect
                 name="year"
                 value={yearOptions.find((opt) => opt.value === form.year)}
@@ -174,7 +174,7 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
             </FormControl>
 
             <FormControl isInvalid={!!errors.major}>
-              <FormLabel>Major*</FormLabel>
+              <FormLabel>Major</FormLabel>
               <Input
                 name="major"
                 value={form.major}
@@ -193,7 +193,7 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
             </FormControl>
 
             <FormControl isInvalid={!!errors.status}>
-              <FormLabel>Status*</FormLabel>
+              <FormLabel>Status</FormLabel>
               <ChakraSelect
                 name="status"
                 value={statusOptions.find((opt) => opt.value === form.status)}
@@ -205,7 +205,7 @@ const FormModal = ({ isOpen, onClose, onSave }) => {
             </FormControl>
 
             <FormControl isInvalid={!!errors.borough}>
-              <FormLabel>Borough*</FormLabel>
+              <FormLabel>Borough</FormLabel>
               <ChakraSelect
                 name="borough"
                 value={boroughOptions.find((opt) => opt.value === form.borough)}

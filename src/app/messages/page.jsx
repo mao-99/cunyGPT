@@ -99,6 +99,7 @@ const Messages = () => {
     e.preventDefault();
     
     console.log(input);
+    console.log("Thiis is me checking context: ", userInfo);
 
     // Add the user's question to the messages array
     setMessages((prevMessages) => [
@@ -110,7 +111,9 @@ const Messages = () => {
     setInput('');
 
     try {
-        console.log(messages)
+      console.log(messages)
+      console.log("Thiis is me checking context: ", userInfo)
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -119,6 +122,7 @@ const Messages = () => {
         body: JSON.stringify({
           message: input,
           history: messages, // You can use messages instead of chatHistory
+          context: userInfo.context
         }),
       });
 

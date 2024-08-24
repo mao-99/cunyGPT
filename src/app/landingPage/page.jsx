@@ -1,42 +1,12 @@
 import React from 'react';
-import { Box, Heading, Button, Divider, Flex, Image, Text, Tooltip } from '@chakra-ui/react';
+import { Box, Heading, Button, Flex, Image, Text, Container } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import ParticlesComponent from '@/components/particles';
 import { TypeAnimation } from 'react-type-animation';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { CircularProgress, CircularProgressLabel} from '@chakra-ui/react';
-import { keyframes } from '@emotion/react';
-
-
-
-// Import all CUNY images
-// import CUNY_Baruch from "@/assets/CUNY_Baruch.png";
-// import CUNY_BC from "@/assets/CUNY_BC.png";
-// import CUNY_BCC from "@/assets/CUNY_BCC.png";
-// import CUNY_BMCC from "@/assets/CUNY_BMCC.jpg";
-// import CUNY_CCNY from "@/assets/CUNY_CCNY.png";
-// import CUNY_CSI from "@/assets/CUNY_CSI.png";
-// import CUNY_Graduate_Center from "@/assets/CUNY_Graduate_Center.png";
-// import CUNY_Guttman from "@/assets/CUNY_Guttman.gif";
-// import CUNY_Health_Policy from "@/assets/CUNY_Health_Policy.png";
-// import CUNY_Hostos from "@/assets/CUNY_Hostos.png";
-// import CUNY_Hunter from "@/assets/CUNY_Hunter.png";
-// import CUNY_JohnJay from "@/assets/CUNY_JohnJay.png";
-// import CUNY_Journalism from "@/assets/CUNY_Journalism.png";
-// import CUNY_Kingsborough from "@/assets/CUNY_Kingsborough.jpg";
-// import CUNY_Labor from "@/assets/CUNY_Labor.png";
-// import CUNY_Law from "@/assets/CUNY_Law.png";
-// import CUNY_Lehman from "@/assets/CUNY_Lehman.png";
-// import CUNY_Macaulay from "@/assets/CUNY_Macaulay.png";
-// import CUNY_Medgar from "@/assets/CUNY_Medgar.png";
-// import CUNY_NYCCT from "@/assets/CUNY_NYCCT.jpg";
-// import CUNY_Professional_Studies from "@/assets/CUNY_Professional_Studies.png";
-// import CUNY_QCC from "@/assets/CUNY_QCC.png";
-// import CUNY_Queens from "@/assets/CUNY_Queens.webp";
-// import CUNY_York from "@/assets/CUNY_York.png";
-
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 
 const SliderImage = ({ src, alt }) => (
   <Box
@@ -45,18 +15,16 @@ const SliderImage = ({ src, alt }) => (
     m={2}
     position="relative"
     overflow="hidden"
-     bg="#f0f0f0"
-    borderRadius="50%" // Makes the container circular
-    transition="all 0.3s"
   >
     <Image
-     
       src={src}
       alt={alt}
       w="100%"
       h="100%"
       objectFit="contain"
       transition="all 0.3s"
+      filter="grayscale(100%)"
+      _hover={{ filter: "grayscale(0%)" }}
     />
   </Box>
 );
@@ -72,8 +40,9 @@ const SliderContainer = ({ children }) => (
       left: 0,
       top: 0,
       bottom: 0,
-      width: '50px',
+      width: '100px',
       zIndex: 1,
+      background: 'linear-gradient(to right, white, transparent)',
     }}
     _after={{
       content: '""',
@@ -81,8 +50,9 @@ const SliderContainer = ({ children }) => (
       right: 0,
       top: 0,
       bottom: 0,
-      width: '50px',
+      width: '100px',
       zIndex: 1,
+      background: 'linear-gradient(to left, white, transparent)',
     }}
   >
     {children}
@@ -92,6 +62,7 @@ const SliderContainer = ({ children }) => (
 const LandingPage = () => {
   const sliderSettings = {
     dots: false,
+    arrows: false,
     infinite: true,
     speed: 5000,
     slidesToShow: 5,
@@ -100,7 +71,7 @@ const LandingPage = () => {
     autoplaySpeed: 0,
     cssEase: 'ease-in-out',
     pauseOnHover: false,
-    // Mobile friendly
+    // Mobile Friendly
     responsive: [
       {
         breakpoint: 1024,
@@ -121,94 +92,116 @@ const LandingPage = () => {
   const cunyImages = [
     "CUNY_Baruch.png", "CUNY_BC.png", "CUNY_BCC.png", "CUNY_BMCC.jpg", "CUNY_CCNY.png", "CUNY_CSI.png", "CUNY_Graduate_Center.png",
     "CUNY_Guttman.gif", "CUNY_Health_Policy.png", "CUNY_Hostos.png", "CUNY_Hunter.png", "CUNY_JohnJay.png", "CUNY_Journalism.png",
-    "CUNY_Kingsborough.jpg", "CUNY_Labor.png", "CUNY_Law.png","CUNY_Lehman.png", "CUNY_Macaulay.png", "CUNY_Medgar.png", "CUNY_NYCCT.jpg",
+    "CUNY_Kingsborough.jpg", "CUNY_Labor.png", "CUNY_Law.png", "CUNY_Lehman.png", "CUNY_Macaulay.png", "CUNY_Medgar.png", "CUNY_NYCCT.jpg",
     "CUNY_Professional_Studies.png", "CUNY_QCC.png", "CUNY_Queens.webp", "CUNY_York.png"
   ];
 
   return (
-    <Box position="relative" overflow="hidden" width="100%" minHeight="100vh">
-      {/* Particles Background */}
-      <Box position="absolute" top="0" left="0" width="100%" height="100%" zIndex="0">
-        <ParticlesComponent id="particles" />
+    <Box width="100%" minHeight={"100vh"}>
+      {/* Hero Section with Particles Background */}
+      <Box position="relative" overflow="hidden" height="400px">
+        <Box position="absolute" top="0" left="0" width="100%" height="100%" zIndex="-1">
+          <ParticlesComponent id="particles" />
+        </Box>
+
+        <Container maxW="1150px" height="100%">
+          <Flex
+            direction={{ base: 'column', md: 'row' }}
+            align="center"
+            justify="center"
+            textAlign={{ base: 'center', md: 'left' }}
+            px={{ base: 4, md: 8, lg: 16 }}
+            position="relative"
+            zIndex="1"
+            height="100%"
+          >
+            <Box flex="1" pr={{ base: 0, md: 8 }} mb={{ base: 8, md: 0 }}>
+              <Heading
+                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                color="#FFFFFF"
+                fontWeight="bold"
+                textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
+                style={{ whiteSpace: 'nowrap' }}
+              >
+                Welcome to CUNY GPT
+              </Heading>
+
+              <TypeAnimation
+                sequence={[
+                  'Your Virtual AI Assistant',
+                  1000,
+                  'Your Hub for All CUNY Wellness Resources',
+                  1000,
+                  'Your Guide to Life at CUNY',
+                  1000,
+                  'Your ',
+                  1000
+                ]}
+                wrapper="span"
+                speed={50}
+                style={{
+                  fontSize: '1.5em',
+                  display: 'inline-block',
+                  color: "#FFFFFF",
+                  fontWeight: 'bold',
+                  textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)',
+                  letterSpacing: '0.05em'
+                }}
+                repeat={Infinity}
+              />
+
+              <Flex justify={{ base: 'center', md: 'flex-start' }} mt={8}>
+                <Button
+                  color="#FFB71B"
+                  bg="#204CAD"
+                  _hover={{ bg: '#071B49' }}
+                  as={RouterLink}
+                  to="/messaging"
+                  size="lg"
+                  px={8}
+                  py={6}
+                  mb={8}
+                  boxShadow="0px 4px 10px rgba(0, 0, 0, 0.3)"
+                >
+                  Try Now for Free
+                </Button>
+              </Flex>
+            </Box>
+            <Box>
+              <Image
+                src="/images/final_robotimg.png"
+                alt="AI Robot"
+                mb={8}
+              />
+            </Box>
+          </Flex>
+        </Container>
       </Box>
 
-      {/* Main Content */}
-      <Box position="relative" zIndex="1" bg="transparent" py={20} px={{ base: 4, md: 8, lg: 16 }}>
-        <Flex
-          direction={{ base: 'column', md: 'row' }}
-          align="center"
-          justify="space-between"
-          textAlign={{ base: 'center', md: 'left' }}
-          mb={12}
+      {/* Rest of the content with white background */}
+      {/* Gradient Divider */}
+      <Box
+        bgGradient="linear(to-t, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.1) 100%)"
+        position="relative"
+        min-width="280px"
+        min-height="75px"
+        max-height="75px"
+        height="50px"
+        width="calc(100% + 0px)"
+        margin={"-0px 0px"}
+      />
+      <Box bg="#FFFFFF" py={20} px={{ base: 4, md: 8, lg: 16 }} minHeight={"100vh"}>
+        <Heading
+          fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}
+          color="#000000"
+          fontWeight="bold"
+          textAlign="center"
+          mt={-16}
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)"
         >
-          <Box flex="1" pr={{ base: 0, md: 8 }} mb={{ base: 8, md: 0 }}>
-            <Heading fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }} 
-              color="#FFFFFF" 
-              mb={2}
-              fontWeight="bold"
-              textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
-              style={{ whiteSpace: 'nowrap' }}
-            >
-              Welcome to CUNY GPT
-            </Heading>
+          Our Connections
+        </Heading>
 
-            <TypeAnimation
-              sequence={[
-                'Your Virtual AI Assistant',
-                1000,
-                'Your Hub for All CUNY Wellness Resources',
-                1000,
-                'Your Guide to Life at CUNY',
-                1000,
-                'Your ',
-                1000
-              ]}
-              wrapper="span"
-              speed={50}
-              style={{
-                fontSize: '1.5em',
-                display: 'inline-block',
-                color: "#FFFFFF",
-                fontWeight: 'bold',
-                textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)',
-                letterSpacing: '0.05em'
-              }}
-              repeat={Infinity}
-            />
-           
-            <Flex justify={{ base: 'center', md: 'flex-start' }} mt={8} ml={9}>
-              <Button
-                colorScheme="blue"
-                color="#FFB71B"
-                bg="#204CAD"
-                _hover={{ bg: '#071B49' }}
-                as={RouterLink}
-                to="/messaging"
-                size="lg"
-                px={8}
-                py={6}
-              >
-                Try Now for Free
-              </Button>
-            </Flex>
-          </Box>
-          <Box height="60%" width="60%">
-            <Image
-              src="/images/final_robotimg.png"
-              alt="AI Robot"
-              width="180%"
-              height="180%"
-              objectFit="cover"
-            />
-          </Box>
-        </Flex>
-
-        <Heading fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }} 
-              color="#FFFFFF" 
-              fontWeight="bold"
-              textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
-              textAlign="center"
-            >Our Connections</Heading>
         {/* Left to right slider */}
         <SliderContainer>
           <Slider {...sliderSettings}>
@@ -227,119 +220,153 @@ const LandingPage = () => {
           </Slider>
         </SliderContainer>
 
-        {/* Problem/Solution Section */}
-        <Flex justifyContent="center" alignItems="center" height="100vh" position="relative">
-      {/* CircularProgress */}
-      <CircularProgress
-        value={77}
-        size="400px"
-        color="blue.400"
-        trackColor="gray.100"
-        thickness="12px"
-      >
-        <CircularProgressLabel
-          fontSize="3xl"
-          fontWeight="bold"
-          color="blue.500"
-          textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
-        >
-          77%
-        </CircularProgressLabel>
-      </CircularProgress>
+        {/* Problem Section */}
+        <Container maxW="1000px" mt={10}>
+          <Heading textAlign="center" mb={8} textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">The Problem</Heading>
+          <Box position="relative">
+            <Box
+              position="absolute"
+              top="20px"
+              left="20px"
+              right="-20px"
+              bottom="-15px"
+              bg="#FFB71B"
+              transform="rotate(2deg)"
+              zIndex={0}
+              boxShadow="0px 4px 20px rgba(0, 0, 0, 0.3)"
+              borderRadius="20px"
+            />
+            <Box bg="#204CAD" p={8} borderRadius="20px" position="relative" zIndex={1}>
+              <Flex justifyContent="center" alignItems="center" position="relative">
+                <CircularProgress
+                  value={77}
+                  size="300px"
+                  color="#FFB71B"
+                  trackColor="gray.100"
+                  thickness="12px"
+                >
+                  <CircularProgressLabel
+                    fontSize="3xl"
+                    fontWeight="bold"
+                    color="#FFB71B"
+                    textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
+                  >
+                    77%
+                  </CircularProgressLabel>
+                </CircularProgress>
 
-      {/* White Part Tooltip */}
-      <Box
-       position="absolute"
-       left="0"              
-       top="50%"              
-       transform="translateY(-50%)"
-       bg="gray.200"
-       color="gray.800"
-       p="8"
-       borderRadius="lg"
-       width="300px"
-       textAlign="center"
-       fontSize="sm"
-       boxShadow="lg"
-       zIndex="1"
-       fontStyle="italic"
-       textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
-       fontWeight="bold"
+                <Box
+                  position="absolute"
+                  left="0"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  bg="gray.200"
+                  color="gray.800"
+                  p="6"
+                  borderRadius="lg"
+                  width="250px"
+                  textAlign="center"
+                  fontSize="sm"
+                  boxShadow="lg"
+                  zIndex="1"
+                  fontStyle="italic"
+                  textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
+                  fontWeight="bold"
+                >
+                  Only 23 percent of a HealthyCUNY survey respondents are aware that their campus had services to help them address food insecurity.
+                </Box>
 
+                <Box
+                  top="50%"
+                  right="0"
+                  transform="translateY(-50%)"
+                  position="absolute"
+                  bg="#FFB71B"
+                  color="white"
+                  p="6"
+                  borderRadius="lg"
+                  width="250px"
+                  textAlign="center"
+                  fontSize="sm"
+                  boxShadow="lg"
+                  zIndex="1"
+                  fontStyle="italic"
+                  textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
+                  fontWeight="bold"
+                >
+                  77 percent of CUNY students are unaware or unsure of the availability of campus food insecurity services (HealthyCUNY, 2018).
+                </Box>
+              </Flex>
+            </Box>
+          </Box>
+        </Container>
 
-      >
-        Only 23 percent of a HealthyCUNY survey respondents are aware that their campus had services to help them address food insecurity.
-      </Box>
+        {/* Solution Section */}
+        <Container maxW="1000px" my={20}>
+          <Heading textAlign="center" mb={8} textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">Our Solution</Heading>
+          <Box position="relative">
+            <Box
+              position="absolute"
+              top="20px"
+              left="20px"
+              right="-20px"
+              bottom="-15px"
+              bg="#204CAD"
+              transform="rotate(2deg)"
+              zIndex={0}
+              boxShadow="0px 4px 20px rgba(0, 0, 0, 0.3)"
+              borderRadius="20px"
+            />
+            <Box bg="#FFB71B" borderRadius="20px" position="relative" zIndex={1}>
+              <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" p={10}>
+                <Box flex="1" pr={{ base: 0, md: 6 }} mb={{ base: 6, md: 0 }}>
+                  <Image
+                    src="images/viewOfModel.png"
+                    alt="App Screenshot"
+                    objectFit="contain"
+                    boxSize="100%"
+                    borderRadius="lg"
+                    overflow={'hidden'}
+                  />
+                </Box>
+                <Box flex="1">
+                  <Text color={'black'} mb={4}>
+                    <b>CUNYGPT</b> is a revolutionary resource for CUNY students to find all resources at one site.
+                  </Text>
+                  <Text color={'black'} mb={4}>
+                    The power of our idea lies in its ability to integrate various campus resources into a single, accessible platform.
+                  </Text>
+                  <Text color={'black'}>
+                    Discover how <b>CUNYGPT</b> can enhance your student experience by providing all the essential information you need in one place.
+                  </Text>
+                </Box>
+              </Flex>
+            </Box>
+          </Box>
+        </Container>
 
-      {/* Blue Part Tooltip */}
-      <Box
-        top="50%"
-        right="-10px"
-        transform="translateY(-50%)"
-        position="absolute"
-        bg="blue.500"
-        color="white"
-        p="8"
-        borderRadius="lg"
-        width="300px"
-        textAlign="center"
-        fontSize="sm"
-        boxShadow="lg"
-        zIndex="1"
-        fontStyle="italic"
-        textShadow="2px 2px 6px rgba(0, 0, 0, 0.3)"
-        fontWeight="bold"
-
-
-      >
-        77 percent of CUNY students are unaware or unsure of the availability of campus food insecurity services (HealthyCUNY, 2018).
-      </Box>
-    </Flex>
-    <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" p={5}>
-      <Box flex="1" pr={{ base: 0, md: 6 }}>
-        <Image 
-          src="images/viewOfModel.png" 
-          alt="App Screenshot"
-          objectFit="contain"
-          boxSize="100%"
-          borderRadius="lg"
-          overflow={'hidden'}
-        />
-      </Box>
-      <Box flex="1">
-        <Heading fontSize="3xl" color={'white'} mb={4}>Our Solution</Heading>
-        <Text color={'white'} mb={4}>
-          CUNYGPT is a revolutionary resource for CUNY students to find all resources at one site.
-        </Text>
-        <Text color={'white'} mb={4}>
-          The power of our idea lies in its ability to integrate various campus resources into a single, accessible platform.
-        </Text>
-        <Text color={'white'}>
-          Discover how CUNYGPT can enhance your student experience by providing all the essential information you need in one place.
-        </Text>
-      </Box>
-    </Flex>
-    
-
-        <Heading mb={4} textAlign="center">
+        {/* GIF DEMO(Stretch) */}
+        {/* <Heading mb={4} textAlign="center" textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
           See how it works
         </Heading>
         <Flex justify="center" mb={12}>
           <Image src="placeholder.gif" alt="Placeholder" />
-        </Flex>
-        
-        
+        </Flex> */}
+
         <Flex justify="center">
           <Button
-            colorScheme="blue"
             color="#FFB71B"
             bg="#204CAD"
             _hover={{ bg: '#071B49' }}
             as={RouterLink}
             to="/messaging"
-            mb={3}
+            size="lg"
+            px={8}
+            py={6}
+            mb={8}
+            boxShadow="0px 4px 10px rgba(0, 0, 0, 0.3)"
           >
-            Try now for free
+            Try Now for Free
           </Button>
         </Flex>
       </Box>
