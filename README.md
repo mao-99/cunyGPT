@@ -4,11 +4,11 @@
 
 ## Introduction
 
-CUNYGPT is designed to provide CUNY students with easy access to essential resources right at their fingertips! Say goodbye to the hassle of searching for hyperlinks and endlessly browsing on Google. With CUNYGPT, all the information you need is just a chat away.
+CUNYGPT is designed to provide CUNY students with easy access to essential resources right at their fingertips! Say goodbye to the hassle of searching for hyperlinks and endlessly browsing on Google. With CUNYGPT, all the information you need is just a chat away.**Currently CUNY GPT boats over 17000 cuny courses and 30000 job postings + skills, with information on resources around all New York Boroughs**.
 
 ## Features
 
-- **Chat Application:** CUNYGPT is a chat application that allows students to interact with a custom chat appliaction designed specifically to answer questions related to their essential needs.
+- **Chat Application:** CUNYGPT is a chat application that allows students to interact with a custom chat application designed specifically to answer questions related to their essential needs.
 - **Resource Access:** The app provides a streamlined way to access helpful resources, ensuring students have the support they need without the frustration of traditional search methods.
 
 ## Technologies Used
