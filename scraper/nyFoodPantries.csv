@@ -1,0 +1,106 @@
+Borough,Name,Address,ZipCode,Phone,Fax,Hours,Type
+Bronx,Food Bank For New York City,"252 W 116th Street
+",10474,(212) 894-8060,,,FoodResource
+Bronx,Caldwell Temple AME Zion Church Soup Kitchen,"1288 Reverend James A. Polite Avenue
+",10459,(718) 542-2933,,"""saturday"" : ""11:00am - 2:00pm""",FoodResource
+Bronx,Missionary Church Of Christ,937 Teller Avenue,10451,(718) 588-4545,,"""wednesday"" :""9:00am - 11:00am""",FoodResource
+Bronx,Calvary Delivery Christian Assembly,737-739 Concourse Village West,10451,(347) 658-4459,,,FoodResource
+Bronx,"Food Stamp Office- Melrose Center
+",260 E. 161st Street,10451,(718) 664-1010,(718) 664-1017,"""monday"" : ""8:30 am - 5:00pm"",
+""tuesday"" : ""8:30 am - 5:00pm"",
+""wednesday"" : ""8:30 am - 5:00pm"",
+""thursday"" : ""8:30 am - 5:00pm"",
+""friday"" :  ""8:30 am - 5:00pm""",FoodResource
+Bronx,Greater Universal Baptist Church,253 E. 153rd Street,10451,(718) 292-8640,,"""wednesday"" : ""12:00pm - 1:30pm"",
+""friday"" : ""12:00pm - 1:30pm""",FoodResource
+Bronx,Resurrection And Life Church,870 E. 163rd Street,10459,(718) 617-2399,,"""tuesday"" : ""6:30pm - 8:00pm"",
+""saturday"" : ""10:00am - 2:00pm"",
+""sunday"" : ""12:00pm - 1:30pm""",FoodResource
+Bronx,WHEDCO - Women's Housing And Economico Development Corp,50 East 168th Street,10452,(718) 839-1100,,"""monday"" : ""2:30pm - 4:00pm"",
+""wednesday"" : ""2:30pm - 4:00pm""",FoodResource
+Bronx,City Light Church,"
+121 East 7th Street",10009,(718) 583-5894,,"""monday"" : ""2:00pm - 5:00pm""",FoodResource
+Bronx,True Gospel Tabernacle Church,1 West Tremont Ave,10453,(718) 901-2786,,"""thursday"" : ""10:30am - 12:30pm""",FoodResource
+Bronx,St. Peter's Church In The Bronx,2500 Westchester Ave,10461,(718) 931-9270,(718) 931-6673,"""thursday"" :  ""9:00am - 12:00pm"",
+""thursday"" : ""12:00pm - 1:30pm""",FoodResource
+Bronx,Abundant Life Tabernacle,2692 3rd Ave,10454,(718) 292-8734,,"""tuesday"" : ""10:30am - 2:30pm"", 
+""wednesday"" : ""10:30am - 2:30pm"",
+""thursday"" : ""10:30am - 2:30pm""",FoodResource
+Brooklyn,St. Paul Pentecostal Kingdom Builders Food Pantry,133 Thomas S. Boyland Street,11233,(718) 453-6393,,"""saturday"" : ""11:00am - 1:00pm""",FoodResource
+Brooklyn,Greenpoint Reformed Church Food Pantry,136 Milton Street,11222,(718) 383-5941,,"""thursday"" : ""8:00am - 11:00am""",FoodResource
+Brooklyn,Ammi Evangelical Baptist Church,1799 Flatbush Ave,11210,(718) 692-3925,,"""saturday"" : ""12:00pm - 2:00pm""",FoodResource
+Brooklyn,Bethel Sunshine Camp,344 Tompkins Ave,11216,(718) 789-0034,,"""tuesday"" : ""7:00pm - 8:30pm""
+""friday"" : ""7:00pm - 8:30pm""",FoodResource
+Brooklyn,Ebenezer Haitian Baptist Church,1058 President Street,11225,(718) 773-3054,,"""saturday"" : ""2:30pm - 3:30pm""",FoodResource
+Brooklyn,Greater Mt. Zion Pentecostal Church,1903 Fulton Street,11233,(718) 221-0694,,"""thursday"" : ""1:00am - 4:00pm""",FoodResource
+Brooklyn,Isaiah's Temple Of Mt. Hope,862 Glenmore Ave,11208,(718) 850-1499,,"""tuesday"" : ""2:00pm - 4:00pm""
+""thursday"" : ""2:00pm - 4:00pm""",FoodResource
+Brooklyn,Miller Ave Block Association,2482 Pitkin Ave,11208,(718) 235-6177,,"""friday"" : ""10:00am - 1:00pm""",FoodResource
+Brooklyn,Our Lady Of Mercy Roman Catholic Church,680 Mother Gaston Blvd,11212,(718) 346-3166,,"""monday"" : ""9:00am - 11:00am""
+""friday"" : ""9:00am - 11:00am""",FoodResource
+Brooklyn,South Road Tabernacle Outreach,753 Lexington Ave,11221,(718) 452-2626,,"""friday"" : ""4:00pm - 6:00pm""",FoodResource
+Brooklyn,Transfiguration Church,263 Marcy Ave,11211,(718) 388-8773,,"""monday"" : ""9:00am - 1:00pm""
+""tuesday"" : ""9:00am - 1:00pm""
+""wednesday"" : ""9:00am - 1:00pm""
+""thursday"" : ""9:00am - 1:00pm""",FoodResource
+Manhattan,Middle Collegiate Church,50 East 7th Street,10003,(212) 477-0666,(212) 228-5027,"""wednesday"" : ""8:00am - 9:30am""",FoodResource
+Manhattan,Holy Apostles Soup Kitchen,296 9th Ave,10001,(212) 807-6799,,"""monday"" : ""10:30am - 12:30pm""
+""tuesday"" : ""10:30am - 12:30pm""
+""wednesday"" : ""10:30am - 12:30pm""
+""thursday"" : ""10:30am - 12:30pm""
+""friday""  :  ""10:30am - 12:30pm""",FoodResource
+Manhattan,Emmanuel Ame Church,37-41 West 119th Street,10026,(212) 722-3969,,"""wednesday""  : ""12:00pm - 2:00pm""",FoodResource
+Manhattan,Catholic Charities Community Services,34 West 134th Street,10002,(212) 862-6401,,"""wednesday"" : ""2:00pm - 5:00pm""",FoodResource
+Manhattan,All Saints Episcopal Church,230 E. 60th St,10022,(212) 758-0447,,"""saturday"" : ""5:00pm - 6:00pm""",FoodResource
+Manhattan,Saint Luke''s Lutheran Church,308 West 46th Street,10036,(212) 246-3540,(212) 977-1838,"""tuesday"": ""2:00pm - 3:00pm""
+""thursday"" : ""2:00pm - 3:00pm""",FoodResource
+Manhattan,St. Matthew's - St. Timothy's Day Care,26 West 84th Street,10024,(212) 362-6750,,"""sunday"" : ""2:00pm""",FoodResource
+Manhattan,Village Temple Soup Kitchen,33 East 12th Street,10003,(212) 674-1744,(212) 674-1744,"""saturday"" : ""2:30pm - 3:30pm""",FoodResource
+Queens,St. Rose Of Lima St Vincent De Paul,130 Beach 84th Street,11693,(718) 634-7394,(718) 634-6591,"""tuesday"" : ""10:00am - 12:00pm"",
+""friday"" : ""10:00am - 12:00pm""",FoodResource
+Queens,First Reformed Church Of Jamaica,153-10 Jamaica Ave,11432,(929) 260-9132,,"""monday"" : ""5:00pm - 6:00pm""",FoodResource
+Queens,Morris Brown Ame Church - Helping Hand,14503 Rockaway Blvd,11436, (718) 322-7596,,"""wednesday"" : ""10:00am - 12:00pm"",
+""saturday"" : ""1:00pm - 2:00pm""",FoodResource
+Queens,Allen A.M.E. Cathedral Food Pantry,110-31 Merrick Boulevard,11433,(718) 206-4600,,"""monday"" : ""11:00am to 1:00pm"",
+""thursday"" : ""11:00am to 1:00pm""",FoodResource
+Queens,,,,,,,
+Staten Island,All Saints Church Episcopal Ministry,2329 Victory Blvd,10314,(718) 698-1338,,"""monday"": ""10:00am - 12:00pm"",
+    ""tuesday"": ""10:00am - 12:00pm"",
+    ""wednesday"": ""10:00am - 12:00pm"",
+    ""friday"": ""10:00am - 12:00pm""",FoodResource
+Staten Island,St. Paul's Roman Catholic Church,53 St. Marks Place,10301,718) 447-6362,(718) 447-4240,"
+    ""tuesday"": ""10:30am - 11:00am""",FoodResource
+Staten Island,Catholic Charities Mobile Food Pantry,128 Targee Street,10304,(718) 447-2165,(718) 447-4835," ""tuesday"": ""10:00am - 12:00pm""",FoodResource
+Staten Island,Catholic Charities Community services Anderson Avenue Food Pantry,120 Anderson Avenue,10302,(718) 420-1010,,"""wednesday"": ""12:00pm - 2:00pm""",FoodResource
+Staten Island,St. Peter's Church,53 St. Mark's Place,10301,(718) 447-6362,,"""tuesday"": ""11:30am - 1:30pm""",FoodResource
+Staten Island,Christian Pentecostal Church,900 Richmond Rd,10304,(718) 273-5850,,"""tuesday"": ""7:00pm - 8:00pm"",
+""wednesday"": ""6:00pm - 8:00pm""",FoodResource
+Staten Island,Council Of Jewish Oranizations,984 Post Avenue,10302,(718) 720-4047,,"""tuesday"":""12:00pm - 2:00pm"",
+""thursday"": ""12:00pm - 2:00pm""",FoodResource
+Staten Island,El Centro Del Inmigrante,260 Port Richmond Ave.,10302,(347) 825-2086,,"""thursday"": ""6:00pm - 9:00pm"",
+""saturday"": 9:00am - 11:00am"" ",FoodResource
+Staten Island,Faith United Methodist,221 Heberton Ave,10302,(718) 442-5684,,"""friday"": ""9:00am - 11:00am""",FoodResource
+Staten Island,First United Christian Church,"109 Victory Blvd
+",10301,(718) 981-4828,,"""sunday"" : ""2:30pm-4:30pm""",FoodResource
+Staten Island,Jewish Community Center Of Staten Island,"1466 Manor Rd
+",10314,(718) 475-5245,,"""tuesday"": ""10:00am - 12:00pm"",
+""thursday"": ""10:00am - 12:00pm""",FoodResource
+Staten Island,Meals On Wheels Of Staten Island,"304 Port Richmond Ave
+",10302,(718) 727-4435,,"""monday"": ""6:00am - 2:00pm"",
+    ""tuesday"": ""6:00am - 2:00pm"",
+    ""wednesday"": ""6:00am - 2:00pm"",
+""thursday"" : ""6:00am - 2:00pm"",
+    ""friday"": ""6:00am - 2:00pm"",
+""saturday"" : ""6:00am - 2:00pm""",FoodResource
+Staten Island,Our Lady Of Good Counsel Church,"10 Austin Place
+",10304,(718) 447-1503,,"""saturday"" : ""10:00am - 11:00am""",FoodResource
+Staten Island,Project Hospitality,100 Park Ave,10302,(718) 448-1544,,"""tuesday"" : ""6:00am - 2:00pm"",
+""tuesday"" : ""9:00am - 11:00am"",
+""tuesday"" : ""1:00pm - 3:00pm"",
+""thursday"" : ""12:00pm - 1:00pm"",
+""thursday"" : ""9:00am - 11:00am""",FoodResource
+Staten Island,Richmond Senior Services,774 Castleton Ave,10310,(718) 816-1811,,"""tuesday"" : ""10:00am - 2:00pm"",
+""thursday"":""10:00am - 2:00pm""",FoodResource
+Staten Island,Salvation Army Port,1295 Forest Ave,10302,(718) 442-2145,,"""tuesday"" : ""11:30am - 10:00pm"",
+""wednesday"" : ""11:30am - 10:00pm"",
+""thursday"" : ""11:30am - 10:00pm""",FoodResource

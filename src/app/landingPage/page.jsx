@@ -321,7 +321,7 @@ const LandingPage = () => {
               <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between" p={10}>
                 <Box flex="1" pr={{ base: 0, md: 6 }} mb={{ base: 6, md: 0 }}>
                   <Image
-                    src="images/viewOfModel.png"
+                    src="/screenshot.png"
                     alt="App Screenshot"
                     objectFit="contain"
                     boxSize="100%"
