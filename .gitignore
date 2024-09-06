@@ -44,3 +44,6 @@ env/*
 /keys
 /keys/keys.js
 keys.js
+
+postings.csv
+career.json
