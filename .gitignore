@@ -45,8 +45,8 @@ env/*
 /keys/keys.js
 keys.js
 
-postings.csv
-career.json
+scraper/postings.csv
+scraper/career.json
 
 __pycache__
 .pytest_cache
