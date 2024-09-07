@@ -32,20 +32,12 @@ batchSize: 1536,
 stripNewLines: true,
 });
   
-//   export interface CustomRetrieverInput extends BaseRetrieverInput {
-//     client: MongoClient;
-//     jobDbName: string;
-//     jobCollectionName: string;
-//     coursesDbName: string;
-//     coursesCollectionName: string;
-//     vectorModel: any;  // Replace with your actual vector model
-//     llm: ChatOpenAI;  // Your LLM instance
-//   }
-  
 
 export class customFoodRetriever extends BaseRetriever {
+  //This is a custom retriever object that retrieves relevant food data from the food vector database.
   lc_namespace = ["langchain", "retrievers"];
 
+  //This is the class constructor.
   constructor({
     client, 
     dbName,
@@ -65,14 +57,17 @@ export class customFoodRetriever extends BaseRetriever {
   }
 
   async _getRelevantDocuments(query) {
+    //This is the function that gets the relevant data from the vector database
     try {
       await this.client.connect();
       const db = this.client.db(this.dbName);
       const cunyFoodCollection = db.collection(this.cunyFoodCollectionName);
       const nyFoodPantryCollection = db.collection(this.pantryFoodCollectionName);
 
+      //Embed the input query
       const queryVector = await this.vectorModel.embedQuery(String(query));
 
+      //Create vector search pipelines to query and get results
       const pipeline = [
         {
           "$vectorSearch" : {
@@ -116,15 +111,17 @@ export class customFoodRetriever extends BaseRetriever {
           }
         }
       ]
+      //Query each collection with their respective pipelines
       const cunyFoodPantries = await cunyFoodCollection.aggregate(pipeline).toArray();
       const nyFoodPantries = await nyFoodPantryCollection.aggregate(pipeline2).toArray();
 
 
+      //Prompt to clean up retrieved data
       const pantryListExtractionPrompt = PromptTemplate.fromTemplate(`Given these two lists that represent a list of pantries in the City University of New York (CUNY) network and New York Pantries respectively,
-        Return important information about each pantry and return a list of pantry objects in this format: [pantry_name, pantry_address, pantry_borough, cuny_pantry/general_ny_pantry, hours, phone, contact information, ...other details]
-        : {cunyFoodPantries}, {nyFoodPantries}
-          `)
+      Return important information about each pantry and return a list of pantry objects in this format: [pantry_name, pantry_address, pantry_borough, cuny_pantry/general_ny_pantry, hours, phone, contact information, ...other details]
+      : {cunyFoodPantries}, {nyFoodPantries}`)
       
+      //Create rag chains based off the earlier prompt
       const pantryChain = pantryListExtractionPrompt.pipe(this.llm).pipe(new StringOutputParser());
       const pantryList = await cunyFoodPantries + await nyFoodPantries
 
@@ -152,6 +149,7 @@ export class customFoodRetriever extends BaseRetriever {
         })
     ];
     
+    //Return the data
     console.log(documents);
     return documents;
     } finally {
@@ -161,8 +159,10 @@ export class customFoodRetriever extends BaseRetriever {
 }
 
 export class customSecurityResourceRetriever extends BaseRetriever {
+  //This is a custom retriever object that retrieves relevant security data from the security vector database.
   lc_namespace = ["langchain", "retrievers"];
 
+  //This is the constructor for the security resource retriever class
   constructor({
     client,
     dbName,
@@ -180,13 +180,16 @@ export class customSecurityResourceRetriever extends BaseRetriever {
   }
 
   async _getRelevantDocuments(query) {
+    //This is the function that gets the relevant data from the vector database
     try {
       await this.client.connect();
       const db = this.client.db(this.dbName);
       const securityResourceCollection = db.collection(this.securityResourceCollectionName);
 
+      //Embed user query
       const queryVector = await this.vectorModel.embedQuery(String(query));
 
+      //Create vector search pipelines to query and get results
       const pipeline = [
         {
           "$vectorSearch": {
@@ -210,8 +213,11 @@ export class customSecurityResourceRetriever extends BaseRetriever {
         }
       ];
 
+      //This gets the data from the db using the above pipeline
       const securityResources = await securityResourceCollection.aggregate(pipeline).toArray();
 
+
+      //Return the data
       const documents = securityResources.map((doc) => {
         return new Document({
           pageContent: `Name: ${doc.name} - ${doc.address} - ${doc.phone} - ${doc.email} - ${doc.hours}`,
@@ -228,8 +234,10 @@ export class customSecurityResourceRetriever extends BaseRetriever {
 }
 
 export class customHousingRetriever extends BaseRetriever {
+  //This is a custom retriever object that retrieves relevant housing data from the housing vector database.
   lc_namespace = ["langchain", "retrievers"];
 
+  //This is the constructor for the housing resource retriever class
   constructor({
     client,
     dbName,
@@ -247,13 +255,16 @@ export class customHousingRetriever extends BaseRetriever {
   }
 
   async _getRelevantDocuments(query) {
+    //This is the function that gets the relevant data from the vector database
     try {
       await this.client.connect();
       const db = this.client.db(this.dbName);
       const housingCollection = db.collection(this.housingCollectionName);
 
+      //Embed a user's query
       const queryVector = await this.vectorModel.embedQuery(String(query));
 
+      //This is the pipeline that is used to retrieve data from the vector database
       const pipeline = [
         {
           "$vectorSearch": {
@@ -277,8 +288,10 @@ export class customHousingRetriever extends BaseRetriever {
         }
       ];
 
+      //This is the call that uses the above pipeline to get the relevant data
       const housingResources = await housingCollection.aggregate(pipeline).toArray();
 
+      //Return data
       const documents = housingResources.map((doc) => {
         return new Document({
           pageContent: `Name: ${doc.name} - ${doc.address} - ${doc.phone} - ${doc.email} - ${doc.hours}`,
@@ -296,9 +309,11 @@ export class customHousingRetriever extends BaseRetriever {
 
 
 export class customCounselingRetriever extends BaseRetriever {
+  //This is a custom retriever object that retrieves relevant counseling data from the counseling vector database.
   lc_namespace = ["langchain", "retrievers"];
 
   constructor({
+    //This is the constructor for the counseling resource retriever class
     client,
     dbName,
     counselingCollectionName,
@@ -315,13 +330,16 @@ export class customCounselingRetriever extends BaseRetriever {
   }
 
   async _getRelevantDocuments(query) {
+    //This is the function that gets the relevant data from the vector database
     try {
       await this.client.connect();
       const db = this.client.db(this.dbName);
       const counselingCollection = db.collection(this.counselingCollectionName);
 
+      //Embed a user's query
       const queryVector = await this.vectorModel.embedQuery(String(query));
 
+      //This is the pipeline that is used to retrieve data from the vector database
       const pipeline = [
         {
           "$vectorSearch": {
@@ -345,8 +363,12 @@ export class customCounselingRetriever extends BaseRetriever {
         }
       ];
 
+      //This is the call that uses the above pipeline to get the relevant data
       const counselingResources = await counselingCollection.aggregate(pipeline).toArray();
-      console.log("Counseling resources: ", counselingResources)
+
+      // console.log("Counseling resources: ", counselingResources)
+
+      //Return data
       const documents = counselingResources.map((doc) => {
         return new Document({
           pageContent: `Name: ${doc.name} - ${doc.address} - ${doc.phone} - ${doc.email} - ${doc.hours}`,
@@ -363,9 +385,11 @@ export class customCounselingRetriever extends BaseRetriever {
 }
 
 export class customHealthRetriever extends BaseRetriever {
+  //This is a custom retriever object that retrieves relevant health data from the health vector database.
   lc_namespace = ["langchain", "retrievers"];
 
   constructor({
+    //This is the constructor for the health resource retriever class
     client,
     dbName,
     healthCollectionName,
@@ -382,13 +406,16 @@ export class customHealthRetriever extends BaseRetriever {
   }
 
   async _getRelevantDocuments(query) {
+    //This is the function that gets the relevant data from the vector database
     try {
       await this.client.connect();
       const db = this.client.db(this.dbName);
       const healthCollection = db.collection(this.healthCollectionName);
 
+      //Embed a user's query
       const queryVector = await this.vectorModel.embedQuery(String(query));
 
+      //This is the pipeline that is used to retrieve data from the vector database
       const pipeline = [
         {
           "$vectorSearch": {
@@ -412,6 +439,7 @@ export class customHealthRetriever extends BaseRetriever {
         }
       ];
 
+      //This is the call that uses the above pipeline to get the relevant data
       const healthResources = await healthCollection.aggregate(pipeline).toArray();
 
       const documents = healthResources.map((doc) => {
@@ -421,7 +449,8 @@ export class customHealthRetriever extends BaseRetriever {
         });
       });
 
-      console.log(documents);
+      // console.log(documents);
+      //Return data
       return documents;
     } finally {
       console.log("Completed health resource retrieval!");
@@ -429,121 +458,122 @@ export class customHealthRetriever extends BaseRetriever {
   }
 }
 
-  export class CustomRetriever extends BaseRetriever {
-    lc_namespace = ["langchain", "retrievers"];
-  
-    constructor({
-      client,
-      jobDbName,
-      jobCollectionName,
-      coursesDbName,
-      coursesCollectionName,
-      vectorModel,
-      llm,
-      ...fields
-    }) {
-      super(fields);
-      this.client = client;
-      this.jobDbName = jobDbName;
-      this.jobCollectionName = jobCollectionName;
-      this.coursesDbName = coursesDbName;
-      this.coursesCollectionName = coursesCollectionName;
-      this.vectorModel = vectorModel;
-      this.llm = llm;
-    }
-  
-    async _getRelevantDocuments(query) {
-      try {
-        // 1. Connect to MongoDB
-        await this.client.connect()
-        const jobDb = this.client.db(this.jobDbName);
-        const jobCollection = jobDb.collection(this.jobCollectionName);
-        const coursesDb = this.client.db(this.coursesDbName);
-        const coursesCollection = coursesDb.collection(this.coursesCollectionName);
-  
-        // 2. Embed the user's query
-        const queryVector = await this.vectorModel.embedQuery(String(query));
-  
-        // 3. Perform the first vector search on the job/skills database
-        const jobPipeline = [
-          {
-            "$vectorSearch": {
-              "exact": false,
-              "index": "default",
-              "limit": 6,
-              "numCandidates": 10000,
-              "path": "embedding",
-              "queryVector": queryVector,
-            },
+export class CustomRetriever extends BaseRetriever {
+  //This is a custom retriever object that retrieves relevant courses data from the cuny courses vector database
+  // using a list of extracted skills
+  lc_namespace = ["langchain", "retrievers"];
+
+  constructor({
+    //This is the constructor for the courses resource retriever class
+    client,
+    jobDbName,
+    jobCollectionName,
+    coursesDbName,
+    coursesCollectionName,
+    vectorModel,
+    llm,
+    ...fields
+  }) {
+    super(fields);
+    this.client = client;
+    this.jobDbName = jobDbName;
+    this.jobCollectionName = jobCollectionName;
+    this.coursesDbName = coursesDbName;
+    this.coursesCollectionName = coursesCollectionName;
+    this.vectorModel = vectorModel;
+    this.llm = llm;
+  }
+
+  async _getRelevantDocuments(query) {
+    try {
+      // 1. Connect to MongoDB
+      await this.client.connect()
+      const jobDb = this.client.db(this.jobDbName);
+      const jobCollection = jobDb.collection(this.jobCollectionName);
+      const coursesDb = this.client.db(this.coursesDbName);
+      const coursesCollection = coursesDb.collection(this.coursesCollectionName);
+
+      // 2. Embed the user's query
+      const queryVector = await this.vectorModel.embedQuery(String(query));
+
+      // 3. Perform the first vector search on the job/skills database
+      const jobPipeline = [
+        {
+          "$vectorSearch": {
+            "exact": false,
+            "index": "default",
+            "limit": 6,
+            "numCandidates": 10000,
+            "path": "embedding",
+            "queryVector": queryVector,
           },
-          {
-            "$project": {
-              "_id": 0,
-              "desc": 1,  // Adjust field names as necessary
-              "score": { "$meta": "vectorSearchScore" },
-            },
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "desc": 1, 
+            "score": { "$meta": "vectorSearchScore" },
           },
-        ];
-        const jobResults = await jobCollection.aggregate(jobPipeline).toArray();
-        const jobDescriptions = jobResults.map((doc) => doc.desc).join("\n");
-  
-        // 4. Use LLM to extract skills from job descriptions
-        const skillsExtractionPrompt = PromptTemplate.fromTemplate(`
-          Analyze this text and extract a list of skills needed for the intended profession in an array format;
-          [skill1, skill2, skill3, ...]. 
-          Make the maximum number of skills 10 and simplify and summarize each skill into as little number of words possible, in some cases a one word description suffices: {jobDescriptions}`
-        );
-        const skillsChain = skillsExtractionPrompt
-          .pipe(this.llm)
-          .pipe(new StringOutputParser());
-        const skillsList = await skillsChain.invoke({ jobDescriptions });
-  
-        // 5. Perform the second vector search on the courses database using extracted skills
-        const coursesPipeline = [
-          {
-            "$vectorSearch": {
-              "exact": false,
-              "index": "default",
-              "limit": 6,
-              "numCandidates": 10000,
-              "path": "embedding",
-              "queryVector": await this.vectorModel.embedQuery(skillsList),
-            },
+        },
+      ];
+      const jobResults = await jobCollection.aggregate(jobPipeline).toArray();
+      const jobDescriptions = jobResults.map((doc) => doc.desc).join("\n");
+
+      // 4. Use LLM to extract skills from job descriptions
+      const skillsExtractionPrompt = PromptTemplate.fromTemplate(`
+        Analyze this text and extract a list of skills needed for the intended profession in an array format;
+        [skill1, skill2, skill3, ...]. 
+        Make the maximum number of skills 10 and simplify and summarize each skill into as little number of words possible, in some cases a one word description suffices: {jobDescriptions}`
+      );
+      const skillsChain = skillsExtractionPrompt
+        .pipe(this.llm)
+        .pipe(new StringOutputParser());
+      const skillsList = await skillsChain.invoke({ jobDescriptions });
+
+      // 5. Perform the second vector search on the courses database using extracted skills
+      const coursesPipeline = [
+        {
+          "$vectorSearch": {
+            "exact": false,
+            "index": "default",
+            "limit": 6,
+            "numCandidates": 10000,
+            "path": "embedding",
+            "queryVector": await this.vectorModel.embedQuery(skillsList),
           },
-          {
-            "$project": {
-              "_id": 0,
-              "course": 1,
-              "college": 1,
-              "desc": 1,
-              "score": { "$meta": "vectorSearchScore" },
-            },
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "course": 1,
+            "college": 1,
+            "desc": 1,
+            "score": { "$meta": "vectorSearchScore" },
           },
-        ];
-        const coursesResults = await coursesCollection
-          .aggregate(coursesPipeline)
-          .toArray();
-  
-        // 6. Combine and return results as a list of documents
-        const documents = [
-          new Document({
-            pageContent: `Skills: ${skillsList}`,
-            metadata: { type: "skills", originalQuery: query },
-          }),
-          ...coursesResults.map(
-            (doc) =>
-              new Document({
-                pageContent: `Course: ${doc.course} - ${doc.college}\n${doc.desc}`,
-                metadata: { type: "course", score: doc.score },
-              })
-          ),
-        ];
-  
-        return documents;
-      } finally {
-        console.log("Completed custom retrieval process.");
-        // Optionally, close the MongoDB connection if necessary
-      }
+        },
+      ];
+      const coursesResults = await coursesCollection
+        .aggregate(coursesPipeline)
+        .toArray();
+
+      // 6. Combine and return results as a list of documents
+      const documents = [
+        new Document({
+          pageContent: `Skills: ${skillsList}`,
+          metadata: { type: "skills", originalQuery: query },
+        }),
+        ...coursesResults.map(
+          (doc) =>
+            new Document({
+              pageContent: `Course: ${doc.course} - ${doc.college}\n${doc.desc}`,
+              metadata: { type: "course", score: doc.score },
+            })
+        ),
+      ];
+
+      return documents;
+    } finally {
+      console.log("Completed custom retrieval process.");
     }
   }
-  
+}

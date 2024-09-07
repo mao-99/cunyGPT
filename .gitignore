@@ -47,3 +47,6 @@ keys.js
 
 postings.csv
 career.json
+
+__pycache__
+.pytest_cache

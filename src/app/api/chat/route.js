@@ -130,8 +130,6 @@ export async function skillsVectorSearch(userQuery, collection) {
 export async function coursesVectorSearch(userQuery, collection) {
     try {
        await client.connect();
-    //    const database = client.db("classRecommender");
-    //    const collection = database.collection("simpleCourseCollection");
        let query = await model.embedQuery(String(userQuery));
        const pipeline = [
         {
@@ -162,42 +160,6 @@ export async function coursesVectorSearch(userQuery, collection) {
         console.log("Courses Searched")
     }
 }
-
-// export const getResponse = async (query) => {
-//     let embeddedQuery = await skillsVectorSearch(query, jobCollection)
-//     // console.log(embeddedQuery)
-//     const jobDescriptions = embeddedQuery.map(doc => doc.desc).join("\n");
-//     let skillsExtractionPrompt = PromptTemplate.fromTemplate(
-//         `Analyze this text and extract a list of skills needed for the intended profession in an array format;
-//          [skill1, skill2, skill3, ...]. 
-//          Make the maximum number of skills 10 and simplify and summarize each skill into as little number of words possible, in some cases a one word description suffices: {jobDescriptions}`
-//     )
-//     let llm = new ChatOpenAI({model: "gpt-4-0125-preview"})
-//     // let skChain = RunnableSequence.from([
-//     //     {
-//     //         jobDescriptions: new RunnablePassthrough(),
-//     //     },
-//     //     skillsExtractionPrompt,
-//     //     llm,
-//     //     new StringOutputParser(),
-//     // ])
-//     let skillsChain = skillsExtractionPrompt.pipe(llm).pipe(new StringOutputParser())
-//     const skillsList = await skillsChain.invoke({ jobDescriptions })
-//     let coursesQuery = await coursesVectorSearch(skillsList, coursesCollection)
-//     console.log("Skills: ", skillsList)
-//     console.log("Courses: ", coursesQuery)
-//     return {skillsList, coursesQuery}
-// }
-
-// async function runScript() {
-//     client.connect()
-
-//     await getResponse("I would love to be a professional fighter")
-    
-//     await client.close();
-// }
-
-// runScript()
 
 export async function POST(req) {
     console.log("Found me")

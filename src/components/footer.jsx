@@ -19,7 +19,7 @@ const Footer = () => {
           Home
         </Link>
         <Link
-          to="/messaging"
+          to="/messages"
           color="#FFB71B"
           _hover={{ color: '#071B49' }}
           borderRadius="30px"
